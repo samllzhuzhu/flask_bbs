@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>BBS首页</title>
+    <style type="text/css">
+        ul,
+        li {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .clearfix::after {
+            content: ".";
+            display: block;
+            height: 0;
+            clear: both;
+            visibility: hidden
+        }
+
+        .news-list {
+            position: relative;
+            width: 1200;
+            margin: 0px auto;
+        }
+
+        .news-list ul li {
+            min-height: 100px;
+            padding: 20px 0;
+            border-bottom: 1px dashed #ccc;
+        }
+
+        .news-list ul li h3 {
+            color: #333;
+            font-size: 20px;
+            line-height: 40px;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+
+        .news-list ul li h3 span {
+            float: right;
+            color: #999;
+            font-size: 16px;
+            font-weight: normal;
+        }
+
+        .news-list ul li p {
+            padding-top: 5px;
+            color: #999;
+            font-size: 14px;
+            line-height: 25px;
+        }
+
+        ul#typeFilter li {
+            width: 20%;
+            border: 1px solid #ccc;
+            float: left;
+            list-style: none;
+            position: relative;
+            margin: 20px;
+        }
+
+
+        ul#typeFilter li img {
+            margin: auto;
+            display: block;
+            width: 50px;
+            margin-bottom: 20px;
+            height: 50px;
+            border: 1px solid #ccc;
+        }
+
+        ul#typeFilter li .type-class {
+            text-align: center;
+            position: absolute;
+            bottom: 0;
+            box-sizing: border-box;
+            width: 100%;
+            left: 0;
+            padding: 20px;
+            border-top: 1px solid #ccc;
+        }
+
+        .pull-left {
+            float: left;
+        }
+
+        .pull-right {
+            float: right;
+        }
+
+        .w-80 {
+            width: 70%;
+        }
+
+        .w-20 {
+            width: 20%;
+        }
+
+        ul#leftFilter {
+            border: 1px solid #ccc;
+        }
+
+        ul#leftFilter li.title {
+            padding: 30px;
+        }
+
+        ul#leftFilter li {
+            min-height: auto;
+            padding: 10px;
+            box-sizing: border-box;
+            width: 100%;
+            position: relative;
+        }
+
+        ul#leftFilter li .count {
+            position: absolute;
+            top: 50%;
+            right: 10px;
+            height: 20px;
+            width: 20px;
+            margin-top: -10px;
+            line-height: 20px;
+            text-align: center;
+            border-radius: 5px;
+            background: #000;
+            color: #ccc;
+            font-size: 12px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="news-list clearfix">
+        <div class="pull-left w-80">
+            <ul id="typeFilter" class="clearfix">
+            </ul>
+            <ul class="clearfix" id="newsListContent">
+            </ul>
+        </div>
+        <div class="pull-right w-20">
+            <ul id="leftFilter">
+                <li class="title">板块</li>
+            </ul>
+        </div>
+    </div>
+
+
+    <ul class="clearfix" id="newsListContent">
+    </ul>
+</body>
+
+</html>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script>
+    // 列表
+	$.ajax({
+                type : "get",
+                url : "http://localhost:5000/topics",
+                dataType : "JSON",        //返回数据形式为json
+		      	contentType : "application/json",
+                success : function (data){
+                			console.log(data);
+
+							var tmp = data;
+							for (var i = 0; i < tmp.data.length; i++) {
+								var item = tmp.data[i];
+								var _li = $('<li><h3><span>' + item.create_time + '</span>' + item.title + '</h3><p>' + item
+									.content + '</p></li>');
+								$("#newsListContent").append(_li)
+							}
+						},
+							error: function (data) {
+                                    console.log(data);
+    }
+						});
+
+
+
+
+    // 列表上方
+    $(function () {
+        var tmp = [{
+            id: 1,
+            icon: '',
+            title: '最新帖子'
+        }, {
+            id: 1,
+            icon: '',
+            title: '精华帖子'
+        }, {
+            id: 1,
+            icon: '',
+            title: '点赞最多'
+        }, {
+            id: 1,
+            icon: '',
+            title: '评论最多'
+        }]
+
+        for (var i = 0; i < tmp.length; i++) {
+            var item = tmp[i];
+            var _li = $('<li><img src="' + item.icon + '" alt=""><div class="type-class">' + item.title +
+                '</div></li>');
+            $("#typeFilter").append(_li)
+        }
+
+    });
+
+    // 列表右侧
+    $.ajax({
+                type : "get",
+                url : "http://localhost:5000/plates",
+                dataType : "JSON",        //返回数据形式为json
+		      	contentType : "application/json",
+                success : function (data){
+                			console.log(data);
+                            var count=30;
+							var tmp = data;
+							for (var i = 0; i < tmp.data.length; i++) {
+                            var item = tmp.data[i];
+                            var _li = $('<li><span class="type-class">' + item.name +
+                                '</span><span class="count">' + count + '</span></li>');
+                            $("#leftFilter").append(_li)
+                        }
+						},
+							error: function (data) {
+                                    console.log(data);
+    }
+						});
+
+</script>
