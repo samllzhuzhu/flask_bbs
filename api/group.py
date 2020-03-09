@@ -10,6 +10,7 @@ from utils import data_exist_validate, phone_validate, Response, login_first, su
 
 
 class GroupService(Resource):
+    """分组服务"""
     @login_first
     @manager_check
     def post(self):
