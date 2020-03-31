@@ -8,8 +8,8 @@ from models.topic import Topic
 from models.user import User, user_role
 from utils import data_exist_validate, phone_validate, Response, login_first, success_msg, error_msg, manager_check
 # 不错
-
-
+# 可以
+# 还行
 class GroupService(Resource):
     """1111111"""
     @login_first
