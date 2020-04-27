@@ -11,7 +11,7 @@ from utils import data_exist_validate, phone_validate, Response, login_first, su
 # 可以
 # 还行
 class GroupService(Resource):
-    """1111111"""
+    """22222"""
     @login_first
     @manager_check
     def post(self):
