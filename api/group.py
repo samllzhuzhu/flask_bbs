@@ -10,6 +10,7 @@ from utils import data_exist_validate, phone_validate, Response, login_first, su
 # 不错
 # 可以
 # 还行
+# dafadasfa
 class GroupService(Resource):
     """dafadfa22222dasfafafdsaf"""
     @login_first
