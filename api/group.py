@@ -12,7 +12,7 @@ from utils import data_exist_validate, phone_validate, Response, login_first, su
 # 还行
 # dafadasfa
 class GroupService(Resource):
-    """dafadfa22222dasfafafdsaf"""
+    """1211"""
     @login_first
     @manager_check
     def post(self):
