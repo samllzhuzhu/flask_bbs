@@ -8,6 +8,7 @@ from models.user import User, user_role
 from utils import data_exist_validate, phone_validate, Response, login_first, success_msg, error_msg, manager_check
 
 
+####
 class TopicService(Resource):
     @login_first
     def get(self):
