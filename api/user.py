@@ -7,7 +7,7 @@ from models.group import Group
 from models.user import User, user_role
 from utils import data_exist_validate, phone_validate, Response, login_first, error_msg, success_msg, manager_check
 
-#####
+##########
 class UserService(Resource):
 
     def post(self):
