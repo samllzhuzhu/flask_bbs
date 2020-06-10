@@ -2,7 +2,7 @@ from datetime import datetime
 
 from database import db
 
-
+#DDD
 class Comment(db.Model):
     __tablename__ = 'comment'
 
