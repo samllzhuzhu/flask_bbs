@@ -2,7 +2,7 @@
 from datetime import datetime
 from database import db
 
-# dadad
+# dadaddaadads
 class Plate(db.Model):
     __tablename__ = 'plate' das
 
