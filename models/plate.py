@@ -1,8 +1,8 @@
 
 from datetime import datetime
 from database import db
-
-# dadad
+#111111
+#222222
 class Plate(db.Model):
     __tablename__ = 'plate' das
 
