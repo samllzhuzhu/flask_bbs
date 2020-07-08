@@ -1,10 +1,10 @@
 
 from datetime import datetime
 from database import db
-#111111
-#222222
+#33333
+#44444
 class Plate(db.Model):
-    __tablename__ = 'plate' das
+    __tablename__ = 'plate1111'
 
     id = db.Column(db.Integer, primary_key=True, index=True, nullable=False, autoincrement=True)
     name = db.Column(db.String(20), nullable=False)
